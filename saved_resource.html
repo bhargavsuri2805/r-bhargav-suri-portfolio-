@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhargav Suri - Portfolio</title>
+    <style>
+        /* --- Basic Reset --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0; /* Slightly darker background */
+            color: #333;
+            padding-top: 60px; /* Adjust for fixed header */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px; /* More rounded corners */
+            overflow: hidden; /* For gradient borders */
+        }
+
+        /* Gradient border effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            margin: -2px; /* Expand to cover the border */
+            border-radius: inherit; /* Inherit the container's border-radius */
+            background: linear-gradient(45deg, #007bff, #28a745, #17a2b8);
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Translucent white */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px); /* Add blur effect */
+        }
+
+        .logo {
+            font-size: 1.7em; /* Larger logo */
+            color: #007bff;
+            font-weight: 900; /* Extra bold */
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600; /* Semi-bold */
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; /* For transform */
+        }
+
+        nav a:hover {
+            color: #007bff;
+            transform: translateY(-2px); /* Slight upward movement on hover */
+        }
+
+        /* --- Sections --- */
+        .section {
+            padding: 50px 0; /* More padding */
+            border-bottom: 1px solid #ddd;
+            transition: opacity 0.3s ease; /* Fade-in effect */
+            opacity: 1;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: #28a745;
+            border-bottom: 4px solid #28a745;
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-size: 2.4em; /* Larger heading */
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- About Section --- */
+        #about .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            perspective: 800px; /* For 3D rotation */
+        }
+
+        #about .about-image {
+            flex: 1;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+            transition: transform 0.5s ease-in-out;
+            transform-origin: center left;
+        }
+
+        #about .about-image:hover {
+            transform: rotateY(10deg);
+        }
+
+        #about .about-text {
+            flex: 2;
+            font-size: 1.1em;
+            text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* --- Skills Section --- */
+        #skills .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Wider skill boxes */
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        #skills .skills-grid li {
+            background-color: #e7f2fe;
+            color: #007bff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #b8daff;
+            text-align: center;
+            font-weight: 700; /* Bold */
+            transition: transform 0.3s ease;
+        }
+
+        #skills .skills-grid li:hover {
+            transform: scale(1.05); /* Slight enlargement on hover */
+        }
+
+        #skills h3 {
+            margin-top: 25px;
+            color: #333;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        /* --- Projects Section --- */
+        #projects .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Wider project cards */
+            gap: 30px;
+        }
+
+        .project-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .project-item:hover {
+            transform: translateY(-8px); /* More pronounced hover effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px 12px 0 0; /* Rounded corners for image */
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            color: #17a2b8;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .project-info p {
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        /* --- Experience & Education --- */
+        #experience .experience-item, #education .education-item {
+            margin-bottom: 25px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        #experience .experience-item::before, #education .education-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: #007bff;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #experience h4, #education h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        #experience p, #education p {
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        /* --- Achievements --- */
+        #achievements ul {
+            list-style: disc;
+            padding-left: 25px;
+        }
+
+        #achievements li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        /* --- Contact --- */
+        #contact .contact-info p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        #contact .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        #contact .contact-info a:hover {
+            color: #0056b3;
+        }
+
+        #contact .linkedin-logo {
+            width: 28px; /* Larger logo */
+            height: 28px;
+            vertical-align: middle;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        #contact .linkedin-logo:hover {
+            transform: scale(1.1); /* Slight enlargement on hover */
+        }
+        
+        #contact .GitHub-logo {
+            width: 28px; /* Larger logo */
+            height: 28px;
+            vertical-align: middle;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        #contact .GitHub-logo:hover {
+            transform: scale(1.1); /* Slight enlargement on hover */
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.95em;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header nav {
+                margin-top: 15px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #about .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #about .about-image {
+                max-width: 80%;
+                margin-bottom: 20px;
+                transform: rotateY(0deg); /* Reset rotation */
+            }
+
+            #skills .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            #projects .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            
+        }
+
+        /* --- JavaScript Enhancements --- */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#" class="logo">Bhargav Suri Ramanujavarapu</a>
+        <nav>
+            <ul>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#about">About</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#skills">Skills</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#projects">Projects</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#experience">Experience</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#education">Education</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#achievements">Achievements</a></li>
+                <li><a href="https://app.onecompiler.com/43hu8wuhp_43hwxu5rk/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+  
+
+    <div class="container">
+        <section id="about" class="section fade-in active">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="./bhargav image .jpg" alt="Software Development and Cyber Security" class="about-image">
+                <div class="about-text">
+                    <p>A highly motivated and hardworking individual with a strong foundation in Computer Science and Information Technology. Eager to apply my skills in software development, cyber security, and cloud computing. Possesses creative problem-solving abilities and a proactive approach to learning and contributing to innovative projects.</p>
+                    <p><strong>Email:</strong> <a href="mailto:bhargavsurir@gmail.com">bhargavsurir@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+918688600096">+91-8688600096</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/r-bhargav-suri-863288238/" target="_blank" style="text-decoration: none;">
+                        /in/r-bhargav-suri-863288238/
+                    </a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/bhargavsuri2805" target="_blank" style="text-decoration: none;">https://github.com/bhargavsuri2805</a></p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section fade-in">
+            <h2>Skills</h2>
+            <div>
+                <h3>Programming Languages</h3>
+                <ul class="skills-grid">
+                    <li>C</li>
+                    <li>Python</li>
+                    <li>JAVA</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Web Development</h3>
+                <ul class="skills-grid">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript (Basics)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Other Skills</h3>
+                <ul class="skills-grid">
+                    <li>Cyber Security</li>
+                    <li>AWS Cloud Computing</li>
+                    <li>Software Design Principles</li>
+                    <li>Algorithms</li>
+                    <li>Data Structures</li>
+                    <li>Ubuntu</li>
+                    <li>Kali Linux</li>
+                    <li>Arduino</li>
+                    <li>Raspberry Pi</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="section fade-in">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <img src="./Web development project image.jpeg" alt="Web Development Project">
+                    <div class="project-info">
+                        <h3>Web Development Project</h3>
+                        <p>Worked on a web development project during my college studies.</p>
+                        </div>
+                </div>
+                <div class="project-item">
+                    <img src="./Automation projects on IOT image.jpeg" alt="IOT Automation Projects">
+                    <div class="project-info">
+                        <h3>IOT Automation Projects</h3>
+                        <p>Developed various automation projects using IoT technologies.</p>
+                        </div>
+                </div>
+                <div class="project-item">
+                    <img src="./Android application image.jpeg" alt="Android Application">
+                    <div class="project-info">
+                        <h3>Android Application</h3>
+                        <p>Developed an android application using MIT App developer.</p>
+                        </div>
+                </div>
+        </div></section>
+
+        <section id="experience" class="section fade-in">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h4>Cyber Security Internship</h4>
+                <p>Completed an internship focused on Cyber Security.</p>
+                </div>
+            <div class="experience-item">
+                <h4>AWS Cloud Computing Internship</h4>
+                <p>Completed an internship focused on AWS Cloud Computing.</p>
+                </div>
+            <div class="experience-item">
+                <h4>Gaming Internship</h4>
+                <p>Completed a two-week internship on gaming administered by APSSDC.</p>
+                </div>
+            </section>
+
+        <section id="education" class="section fade-in">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h4>B. Tech(CIC)</h4>
+                <p>PSCMR College of Engineering &amp; Technology(Autonomous), Vijayawada, Andhra Pradesh</p>
+                <p>JNTU Kakinada, AP | Expected Graduation: 2025 | CGPA: 7.5/10</p>
+                </div>
+            <div class="education-item">
+                <h4>Intermediate</h4>
+                <p>Sri Narayana Junior College, Vijayawada, Andhra Pradesh</p>
+                <p>Board of Intermediate Education, AP | Year of Passing: 2021 | Percentage: 65%</p>
+                </div>
+            <div class="education-item">
+                <h4>SSC</h4>
+                <p>DR.KKK's Gowtham E.M High School, Gudiwada, Andhra Pradesh</p>
+                <p>Board of Secondary Education, Ap | Year of Passing: 2019 | CGPA: 7.3/10</p>
+                </div>
+            </section>
+
+        <section id="achievements" class="section fade-in">
+            <h2>Achievements</h2>
+            <ul>
+                <li>Consistently maintained good academic record with 70%.</li>
+                <li>Secured 3rd prize in the project expo in the NRI College.</li>
+                <li>Organized and managed a highly competitive quiz competition at project expo, attracting 50+ participants and achieving a 30% increase in event engagement.</li>
+                </ul>
+            </section>
+
+        <section id="contact" class="section fade-in">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Feel free to reach out!</p>
+                <p><strong>Email:</strong> <a href="mailto:bhargavsurir@gmail.com">bhargavsurir@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+918688600096">+91-8688600096</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/r-bhargav-suri-863288238/" target="_blank" style="text-decoration: none;">
+                    <img src="./linkdin logo image.jpeg" alt="LinkedIn Profile" class="linkedin-logo">
+                    /in/r-bhargav-suri-863288238/
+                </a></p><strong>GitHub:</strong> <a href="https://github.com/bhargavsuri2805" target="_blank" style="text-decoration: none;">
+                  <img src="./gitHub logo image.jpeg" alt="GitHub Profile" class="GitHub-logo">
+                  https://github.com/bhargavsuri2805
+                </a><p></p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Bhargav Suri</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Basic JavaScript for fade-in effect
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.2 // Adjust as needed
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        console.log("Portfolio script loaded.");
+    </script>
+
+<div id="volume-booster-visusalizer">
+                <div class="sound">
+                    <div class="sound-icon"></div>
+                    <div class="sound-wave sound-wave_one"></div>
+                    <div class="sound-wave sound-wave_two"></div>
+                    <div class="sound-wave sound-wave_three"></div>
+                </div>
+                <div class="segments-box">
+                    <div data-range="1-20" class="segment"><span></span></div>
+                    <div data-range="21-40" class="segment"><span></span></div>
+                    <div data-range="41-60" class="segment"><span></span></div>
+                    <div data-range="61-80" class="segment"><span></span></div>
+                    <div data-range="81-100" class="segment"><span></span></div>
+                </div>
+            </div></body></html>
